@@ -1,0 +1,4 @@
+{
+  runningcontainers:["§§INSTANCE-db", "§§INSTANCE-teampass"],
+  supportcontainers:["§§INSTANCE-teampass-data"]    
+}

@@ -1,0 +1,48 @@
+version : "2"
+
+networks:
+    bibbox-default-network:
+        external: true
+
+services:
+    §§INSTANCE-teampass:
+        image: teampass/teampass
+        container_name: §§INSTANCE-teampass
+        networks:
+            - bibbox-default-network
+        ports:
+        - "§§PORT2:80"
+        links:
+            - §§INSTANCE-db
+        volumes_from:
+            - §§INSTANCE-teampass-data
+        depends_on: 
+            - §§INSTANCE-teampass-data
+    
+    §§INSTANCE-db:
+        image: mysql/mysql-server:5.7
+        container_name: §§INSTANCE-db
+        networks:
+            - bibbox-default-network
+        ports:
+            - "§§PORT1:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: mypass
+            MYSQL_DATABASE: teampass
+            MYSQL_PASSWORD: §§MYSQL_PASSWORD
+            MYSQL_USER: teampass
+        volumes_from:
+            - §§INSTANCE-teampass-data
+        depends_on: 
+            - §§INSTANCE-teampass-data
+
+    §§INSTANCE-teampass-data:
+        image: busybox
+        container_name: §§INSTANCE-teampass-data
+        volumes:
+            - ./data/volumes/db:/var/lib/mysql
+            - /var/run/docker.sock:/tmp/docker.sock:ro
+            - ./data/volumes/teampass:/var/www/html
+            - ./data/sk:/etc/ssl/sk
+            - ./data/php/session:/var/php/session
+        # command: "chown 1000:1000 /etc/ssl/sk"

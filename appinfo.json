@@ -1,0 +1,10 @@
+{
+	"name": "Teampass Password Management",
+	"short_name": "Teampass",
+	"version": "?",
+	"description": "A save location for every Users passwords",
+	"catalogue_url": "",
+	"application_url": "https://teampass.net/",
+	"tags": ["Password", "Management"],
+	"application_documentation_url": "https://teampass.readthedocs.io"
+}

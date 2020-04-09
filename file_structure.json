@@ -1,0 +1,14 @@
+{
+  "makefolders":[
+    "/data/php/session",
+    "/data/volumes/db",
+    "/data/volumes/teampass",
+    "/data/sk"
+  ],
+  "copyfiles":[
+        {
+      "source":"virtualhost_http.template",
+      "destination":"virtualhost_http.template"
+       }
+    ]
+}

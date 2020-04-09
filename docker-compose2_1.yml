@@ -1,0 +1,47 @@
+# docker-compose.yml
+version : "2"
+
+networks:
+    bibbox-default-network:
+        external: true
+    frontend:
+    backend:
+
+services:
+    teampass:
+        image: teampass/teampass
+        container_name: teampass
+        networks:
+            - bibbox-default-network
+        ports:
+        - "80:80"
+        links:
+            - teampass-db
+        volumes_from:
+            - teampass-data
+        depends_on: 
+            - teampass-data
+  
+    teampass-db:
+        image: mysql/mysql-server:5.7
+        container_name: testpass-db
+        networks:
+            - bibbox-default-network
+        environment:
+            MYSQL_ROOT_PASSWORD: mypass
+            MYSQL_DATABASE: teampass
+            MYSQL_PASSWORD: teampass
+            MYSQL_USER: teampass
+        volumes_from:
+            - teampass-data
+        depends_on: 
+            - teampass-data
+
+    teampass-data:
+        image: busybox
+        container_name: teampass-data
+        volumes:
+            - ./data/volumes/db:/var/lib/mysql
+            - /var/run/docker.sock:/tmp/docker.sock:ro
+            - ./data/volumes/teampass:/var/www/html
+            - ./data/php/session:/var/php/session
