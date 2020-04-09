@@ -1,13 +1,20 @@
-## OMERO Installation Instructions 
+## TeamPass Installation Instructions 
 
-* the deploymend of the OMERO war may take some minutes, be patient
-* initial user/passwordd: **root / omero**
-
+Just install the App
 
 ## After the installation
 
-After installation open §§PORT2 to allow access with a client (like OMERO.insight) to the Server
-(For example on system: VBoxManage controlvm <VMNAME> natpf1 'omero,tcp,,<§§PORT2>,,<§§PORT2>')
+Enter the DB credentials in the installation wizard at first 
+startup:
+
+MYSQL_ROOT_PASSWORD: mypass
+MYSQL_DATABASE: teampass
+MYSQL_PASSWORD: §§MYSQL_PASSWORD
+MYSQL_USER: teampass
+
+When queried for path to saltkey enter:
+
+/etc/ssl/sk
 
 
 Have a nice ride with the new Admins youngtimer.
